@@ -1,4 +1,4 @@
-package com.cshisan.core.api.model
+package com.cshisan.core.api.chat
 
 import kotlinx.serialization.Serializable
 
@@ -12,10 +12,10 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class ChatResponse(
-  val id: String,
-  val message: ChatResponseMessage,
-  val modelId: String,
-  val usage: TokenUsage
+    val id: String,
+    val message: ChatResponseMessage,
+    val modelId: String,
+    val usage: TokenUsage
 )
 
 /**

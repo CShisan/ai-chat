@@ -1,13 +1,11 @@
-package com.cshisan.core.api.service
+package com.cshisan.core.api.chat
 
 import com.cshisan.core.model.Result
-import com.cshisan.core.api.model.ChatRequest
-import com.cshisan.core.api.model.ChatResponse
 
 /**
  * AI聊天服务接口
  */
-interface ChatService {
+interface ChatApi {
   val baseUrl: String
     get() = "/chat"
 

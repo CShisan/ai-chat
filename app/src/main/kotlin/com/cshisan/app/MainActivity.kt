@@ -14,7 +14,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.cshisan.app.ui.navigation.NavGraph
+import com.cshisan.feature.nav.NavGraph
 import com.cshisan.app.ui.theme.AiChatTheme
 import dagger.hilt.android.AndroidEntryPoint
 

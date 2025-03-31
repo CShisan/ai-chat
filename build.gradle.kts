@@ -9,4 +9,5 @@ plugins {
   alias(libs.plugins.spotless) apply false
   alias(libs.plugins.android.library) apply false
   alias(libs.plugins.google.secrets) apply false
+  alias(libs.plugins.jetbrains.kotlin.jvm) apply false
 }

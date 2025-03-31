@@ -2,12 +2,12 @@ package com.cshisan.feature.chat
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.cshisan.core.api.service.ChatService
+import com.cshisan.core.api.chat.ChatApi
 import com.cshisan.core.model.ChatMessage
 import com.cshisan.core.model.Conversation
 import com.cshisan.core.model.Result
-import com.cshisan.core.api.model.ChatRequest
-import com.cshisan.core.api.model.ChatRequestMessage
+import com.cshisan.core.api.chat.ChatRequest
+import com.cshisan.core.api.chat.Message
 import com.cshisan.core.repository.ChatRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,12 +24,12 @@ import javax.inject.Inject
  * 聊天视图模型
  * 
  * @param chatRepository 聊天仓库
- * @param chatService 聊天服务
+ * @param chatApi 聊天服务
  */
 @HiltViewModel
 class ChatViewModel @Inject constructor(
     private val chatRepository: ChatRepository,
-    private val chatService: ChatService
+    private val chatApi: ChatApi
 ) : ViewModel() {
     
     // 会话状态
@@ -103,18 +103,18 @@ class ChatViewModel @Inject constructor(
             
             // 构建聊天历史
             val chatHistory = _messagesState.value.messages.map { message ->
-                ChatRequestMessage(
+                Message(
                     role = if (message.isFromUser) 
-                            ChatRequestMessage.ROLE_USER
+                            Message.ROLE_USER
                           else 
-                            ChatRequestMessage.ROLE_ASSISTANT,
+                            Message.ROLE_ASSISTANT,
                     content = message.content
                 )
             }
             
             // 添加当前用户消息
-            val allMessages = chatHistory + ChatRequestMessage(
-                role = ChatRequestMessage.ROLE_USER,
+            val allMessages = chatHistory + Message(
+                role = Message.ROLE_USER,
                 content = content
             )
             
@@ -124,7 +124,7 @@ class ChatViewModel @Inject constructor(
                 modelId = "gpt-3.5-turbo" // 默认模型
             )
             
-            when (val response = chatService.sendChatRequest(request)) {
+            when (val response = chatApi.sendChatRequest(request)) {
                 is Result.Success -> {
                     // 保存AI回复
                     val aiMessage = ChatMessage(

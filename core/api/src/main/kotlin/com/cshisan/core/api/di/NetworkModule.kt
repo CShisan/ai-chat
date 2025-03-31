@@ -1,8 +1,10 @@
 package com.cshisan.core.api.di
 
 import com.cshisan.core.api.KtorClient
-import com.cshisan.core.api.service.ChatService
-import com.cshisan.core.api.service.ChatServiceImpl
+import com.cshisan.core.api.auth.AuthApi
+import com.cshisan.core.api.auth.AuthApiImpl
+import com.cshisan.core.api.chat.ChatApi
+import com.cshisan.core.api.chat.ChatApiImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,14 +17,19 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-  /**
-   * 提供聊天服务
-   */
   @Provides
   @Singleton
-  fun provideChatService(
+  fun provideAuthApi(
     client: KtorClient
-  ): ChatService {
-    return ChatServiceImpl(client)
+  ): AuthApi {
+    return AuthApiImpl(client)
+  }
+
+  @Provides
+  @Singleton
+  fun provideChatApi(
+    client: KtorClient
+  ): ChatApi {
+    return ChatApiImpl(client)
   }
 } 

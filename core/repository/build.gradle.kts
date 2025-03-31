@@ -1,9 +1,9 @@
 plugins {
   id("cshisan.android.library")
   id("cshisan.android.hilt")
-  id("cshisan.spotless")
   id(libs.plugins.kotlin.serialization.get().pluginId)
   id(libs.plugins.google.secrets.get().pluginId)
+  id("cshisan.spotless")
 }
 
 android {
@@ -16,6 +16,8 @@ android {
 
 dependencies {
   api(projects.core.model)
+
+  implementation(libs.androidx.material3.android)
 
   // firebase
   implementation(platform(libs.firebase.bom))

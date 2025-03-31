@@ -31,7 +31,7 @@ interface UserRepository {
      * @param password 密码
      * @return 注册结果
      */
-    suspend fun register(email: String, username: String, password: String): Result<User>
+    suspend fun register(email: String, password: String): Result<User>
     
     /**
      * 用户登录

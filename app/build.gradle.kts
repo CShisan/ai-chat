@@ -4,14 +4,15 @@ plugins {
   id("cshisan.android.hilt")
   id("cshisan.spotless")
   alias(libs.plugins.kotlin.serialization)
+  alias(libs.plugins.google.secrets)
 }
 
 android {
-  namespace = "com.cshisan"
+  namespace = "com.cshisan.app"
   compileSdk = 35
 
   defaultConfig {
-    applicationId = "com.cshisan"
+    applicationId = "com.cshisan.app"
     minSdk = 26
     targetSdk = 35
     versionCode = 1
@@ -37,6 +38,7 @@ android {
   }
   buildFeatures {
     compose = true
+    buildConfig = true
   }
   packaging {
     resources {
@@ -83,4 +85,19 @@ dependencies {
 
   // Serialization
   implementation(libs.kotlinx.serialization.json)
+
+  // Firebase
+  implementation(platform(libs.firebase.bom))
+  implementation(libs.firebase.auth)
+  implementation(libs.firebase.store)
+}
+
+if (file("google-services.json").exists()) {
+  apply(plugin = libs.plugins.gms.googleServices.get().pluginId)
+}
+
+// 添加 secrets 配置
+secrets {
+  propertiesFileName = "secrets.properties"
+  defaultPropertiesFileName = "secrets.defaults.properties"
 }

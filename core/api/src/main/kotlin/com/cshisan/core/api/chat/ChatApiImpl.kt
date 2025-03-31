@@ -1,8 +1,6 @@
-package com.cshisan.core.api.service
+package com.cshisan.core.api.chat
 
 import com.cshisan.core.api.KtorClient
-import com.cshisan.core.api.model.ChatRequest
-import com.cshisan.core.api.model.ChatResponse
 import com.cshisan.core.model.Result
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
@@ -17,9 +15,9 @@ import javax.inject.Singleton
  * @param client HTTP客户端
  */
 @Singleton
-class ChatServiceImpl @Inject constructor(
+class ChatApiImpl @Inject constructor(
   private val client: KtorClient
-) : ChatService {
+) : ChatApi {
 
   override suspend fun sendChatRequest(request: ChatRequest): Result<ChatResponse> {
     return try {

@@ -22,15 +22,6 @@ import com.cshisan.core.repository.BuildConfig
 @Module
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {
-    
-    /**
-     * 提供Firebase认证服务
-     */
-    @Provides
-    @Singleton
-    fun provideFirebaseAuth(): FirebaseAuth {
-        return Firebase.auth
-    }
 
     /**
      * 提供Firebase Firestore服务
@@ -55,7 +46,7 @@ object RepositoryModule {
      */
     @Provides
     @Singleton
-    fun provideUserRepository(auth: FirebaseAuth, firestore: FirebaseFirestore): UserRepository {
-        return FirebaseUserRepository(auth, firestore)
+    fun provideUserRepository(firestore: FirebaseFirestore): UserRepository {
+        return FirebaseUserRepository(firestore)
     }
 } 

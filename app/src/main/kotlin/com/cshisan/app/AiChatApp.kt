@@ -7,4 +7,4 @@ import dagger.hilt.android.HiltAndroidApp
  * AI聊天应用程序类
  */
 @HiltAndroidApp
-class AiChatApp : Application() 
+class AiChatApp : Application()

@@ -11,6 +11,7 @@ android {
 
 dependencies {
   api(projects.core.model)
+  api(projects.core.common)
 
   implementation(libs.ktor.core)
   implementation(libs.ktor.cio)

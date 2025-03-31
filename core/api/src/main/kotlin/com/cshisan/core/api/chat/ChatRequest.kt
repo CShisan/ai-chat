@@ -1,4 +1,4 @@
-package com.cshisan.core.api.model
+package com.cshisan.core.api.chat
 
 import kotlinx.serialization.Serializable
 
@@ -12,7 +12,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class ChatRequest(
-  val messages: List<ChatRequestMessage>,
+  val messages: List<Message>,
   val modelId: String,
   val temperature: Float = 0.7f,
   val maxTokens: Int = 2048
@@ -25,7 +25,7 @@ data class ChatRequest(
  * @param content 消息内容
  */
 @Serializable
-data class ChatRequestMessage(
+data class Message(
     val role: String,
     val content: String
 ) {
